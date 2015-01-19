@@ -1,0 +1,25 @@
+{
+  "name": "study-logger-server",
+  "version": "1.0.0",
+  "description": "Server for receiving log files from study-logger.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Lafreniere",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "cors": "^2.5.2",
+    "express": "^4.10.6",
+    "q": "^1.1.2",
+    "q-sqlite3": "^0.1.2",
+    "sqlite3": "^3.0.4"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0",
+    "request": "^2.51.0",
+    "supertest": "^0.15.0"
+  }
+}
