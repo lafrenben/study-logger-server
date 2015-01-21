@@ -12,13 +12,13 @@ describe('Server', function() {
   // after(function(done) {
   // });
 
-  it('- can accept a POST of log events', function(done) {
+  it('can accept a POST of log events', function(done) {
 
     var events = [{timestamp: 123,
 		   type: "event.testevent",
 		   startdate: "2015-01-01"}];
     request(app)
-      .post('/log')
+      .post('/log?user=TestUser&hash=0')
       .send(events)
       .end(function(err, res) {
 	expect(res.status).to.equal(200);
@@ -28,7 +28,7 @@ describe('Server', function() {
       });
   });
 
-  it('- rejects requests from non-whitelisted usernames', function(done) {
+  it('rejects requests from non-whitelisted usernames', function(done) {
 
     var events = [{timestamp: 123,
 		   type: "event.testevent",

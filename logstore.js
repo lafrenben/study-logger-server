@@ -14,14 +14,17 @@ function store(user, events) {
 	  return db.prepare('INSERT INTO events(user, timestamp, event) VALUES(?,?,?)');
 	})
 	.then(function (stmt) {
-	  var a = [];
+	  var inserts = [];
 	  for (var i = 0; i < events.length; i++) {
-	    a.push(stmt.run(user, events[i].timestamp, JSON.stringify(events[i])));
+	    inserts.push(stmt.run(user, events[i].timestamp, JSON.stringify(events[i])));
 	  }
-	  return Q.all(a)
-	    .then(function () {
+	  var result = Q(true);
+	  inserts.forEach(function(f) {
+	    result = result.then(f);
+	  });
+	  return result.then(function() {
 	      return stmt.finalize();
-	    });
+	  });
 	})
 	.then(function () {
 	  return db.close();
