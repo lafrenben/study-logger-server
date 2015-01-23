@@ -17,14 +17,20 @@ module.exports = function() {
     var hash = qstr.hash;
     // console.log ("%s %s", user, hash);
     if (!req.body) {
-      res.status(400).send("Request body was empty!");
+      res.status(400).send({
+	error: "Request body was empty!"
+      });
 
     } else {
       var events = req.body;
       store(user, events).then(function() {
-	res.status(200).send("Done!");
+	res.status(200).send({ 
+	  message: "Done!"
+	});
       }, function(error) { // if something went wrong
-	res.status(500).send("Error! " + error);
+	res.status(500).send({
+	  error: error
+	});
       });
 
     }
