@@ -7,9 +7,9 @@ function store(user, events) {
     .then(function (db) {
       return db.run('CREATE TABLE IF NOT EXISTS events ' +
 		    '("id" INTEGER PRIMARY KEY AUTOINCREMENT, ' +
-		    '"user" VARCHAR(255), ' +
-		    '"timestamp" INTEGER, ' +
-		    '"event" TEXT) ')
+		    '"user" VARCHAR(255) NOT NULL, ' +
+		    '"timestamp" INTEGER NOT NULL, ' +
+		    '"event" TEXT NOT NULL) ')
 	.then(function () {
 	  return db.prepare('INSERT INTO events(user, timestamp, event) VALUES(?,?,?)');
 	})

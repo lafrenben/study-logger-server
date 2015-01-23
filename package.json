@@ -1,10 +1,10 @@
 {
   "name": "study-logger-server",
   "version": "1.0.0",
-  "description": "Server for receiving log files from study-logger.",
-  "main": "server.js",
+  "description": "Express route for receiving and storing log events.",
+  "main": "logroute.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Ben Lafreniere",
   "license": "MIT",
