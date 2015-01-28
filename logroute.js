@@ -14,7 +14,7 @@ module.exports = function() {
   logroute.post('/log', function(req, res, next) {
     var qstr = url.parse(req.url, true).query;
     var user = qstr.user;
-    var hash = qstr.hash;
+    var auth = qstr.hash;
     // console.log ("%s %s", user, hash);
     if (!req.body) {
       res.status(400).send({
