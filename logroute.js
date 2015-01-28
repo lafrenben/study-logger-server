@@ -12,10 +12,9 @@ module.exports = function() {
   logroute.use( bodyParser.json() );
 
   logroute.post('/log', function(req, res, next) {
-    var qstr = url.parse(req.url, true).query;
-    var user = qstr.user;
-    var auth = qstr.hash;
-    // console.log ("%s %s", user, hash);
+    var user = req.query.user;
+    var auth = req.query.auth;
+    console.log ("%s %s", user, auth);
     if (!req.body) {
       res.status(400).send({
 	error: "Request body was empty!"
