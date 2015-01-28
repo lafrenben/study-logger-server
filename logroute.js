@@ -4,7 +4,14 @@ var express = require('express'),
     url = require('url'),
     store = require('./logstore');
 
-module.exports = function() {
+function createLogRoute(options) {
+  
+  var logdir;
+  if (options && options.logdir) {
+    logdir = options.logdir;
+  } else {
+    logdir = './data';
+  }
 
   var logroute = express.Router();
 
@@ -14,7 +21,7 @@ module.exports = function() {
   logroute.post('/log', function(req, res, next) {
     var user = req.query.user;
     var auth = req.query.auth;
-    console.log ("%s %s", user, auth);
+    // console.log ("%s %s", user, auth);
     if (!req.body) {
       res.status(400).send({
 	error: "Request body was empty!"
@@ -22,7 +29,7 @@ module.exports = function() {
 
     } else {
       var events = req.body;
-      store(user, events).then(function() {
+      store(user, events, logdir).then(function() {
 	res.status(200).send({ 
 	  message: "Done!"
 	});
@@ -34,7 +41,8 @@ module.exports = function() {
 
     }
   });
-  
-  return logroute;
 
-}();
+  return logroute;
+}
+
+module.exports = createLogRoute;

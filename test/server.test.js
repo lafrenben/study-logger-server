@@ -18,7 +18,7 @@ describe('Server', function() {
 		   type: "event.testevent",
 		   startdate: "2015-01-01"}];
     request(app)
-      .post('/log?user=TestUser&hash=0')
+      .post('/log?user=TestUser&auth=0')
       .send(events)
       .end(function(err, res) {
 	expect(res.status).to.equal(200);
@@ -34,7 +34,7 @@ describe('Server', function() {
 		   type: "event.testevent",
 		   startdate: "2015-01-01"}];
     request(app)
-      .post('/log?user=ShadyGuy&hash=No')
+      .post('/log?user=ShadyGuy&auth=No')
       .send(events)
       .end(function(err, res) {
 	expect(res.status).to.equal(400);

@@ -1,9 +1,10 @@
 var qsql = require('q-sqlite3'),
-    Q = require('q');
+    Q = require('q'),
+    path = require('path');
 
-function store(user, events) {
+function store(user, events, dir) {
 
-  return qsql.createDatabase('data/' + user + '.db')
+  return qsql.createDatabase(path.join(dir, user + '.db'))
     .then(function (db) {
       return db.run('CREATE TABLE IF NOT EXISTS events ' +
 		    '("id" INTEGER PRIMARY KEY AUTOINCREMENT, ' +

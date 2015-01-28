@@ -3,10 +3,12 @@ var assert = require('chai').assert,
     expect = require('chai').expect,
     fs = require('fs'),
     qsql = require('q-sqlite3'),
-    store = require('../logstore');
+    store = require('../logstore'),
+    path = require('path');
 
 var user = 'TestUser';
-var testDbFile = 'data/TestUser.db';
+var testDbDir = 'data';
+var testDbFile = path.join(testDbDir, 'TestUser.db');
 var events = [{timestamp: 123,
 	       type: "event.testevent",
 	       startdate: "2015-01-01"},
@@ -31,13 +33,13 @@ describe('LogStore', function() {
   });
 
   it('automatically creates a database file on first insert', function(done) {
-    store(user, events).then(function() {
+    store(user, events, testDbDir).then(function() {
       assert(fs.existsSync( testDbFile ), 'Database file exists');
     }).done(done);
   });
 
   it('successfully inserts events into the database', function(done) {
-    store(user, events).then(function() {
+    store(user, events, testDbDir).then(function() {
       return qsql.createDatabase( testDbFile ).then(function(db) {
       	return db.all('SELECT event FROM events ORDER BY id ASC').then(function(rows) {
       	  var outEvents = [];
@@ -59,9 +61,9 @@ describe('LogStore', function() {
 		  {timestamp: 126,
 		   type: "event.testevent",
 		   startdate: "2015-01-01"}];
-    store(user, events)
+    store(user, events, testDbDir)
       .then(function() {
-	return store(user, events2);
+	return store(user, events2, testDbDir);
       })
       .then(function() {
 	return qsql.createDatabase( testDbFile ).then(function(db) {

@@ -3,7 +3,7 @@ var express = require('express'),
 
 var app = express();
 
-app.use('/', logroute);
+app.use('/', logroute());
 
 function start() {
   var port = process.env.PORT || 9250;
