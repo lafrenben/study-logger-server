@@ -2,8 +2,15 @@ var express = require('express'),
     logroute = require('./logroute');
 
 var app = express();
+var authFunc = function(user, auth) {
+  if (user === 'TestUser' && auth === '0') {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-app.use('/', logroute());
+app.use('/', logroute({auth: authFunc}));
 
 function start() {
   var port = process.env.PORT || 9250;
