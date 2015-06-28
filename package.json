@@ -13,7 +13,6 @@
     "cors": "^2.5.2",
     "express": "^4.10.6",
     "q": "^1.1.2",
-    "q-sqlite3": "^0.1.2",
     "sqlite3": "^3.0.4"
   },
   "devDependencies": {

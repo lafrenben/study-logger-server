@@ -29,16 +29,19 @@ function createLogRoute(options) {
 
     } else {
       var events = req.body;
-      store(user, events, logdir).then(function() {
-	res.status(200).send({ 
-	  message: "Done!"
-	});
-      }, function(error) { // if something went wrong
-	res.status(500).send({
-	  error: error
-	});
-      });
+      store(user, events, logdir, function(err) {
+	// console.log("Error is " + err);
+	if (err !== null) {
+	  res.status(500).send({
+	    error: err
+	  });
 
+	} else {
+	  res.status(200).send({ 
+	    message: "Done!"
+	  });
+	}
+      });
     }
   });
 
