@@ -37,8 +37,7 @@ describe('Server', function() {
       .post('/log?user=ShadyGuy&auth=No')
       .send(events)
       .end(function(err, res) {
-	expect(res.status).to.equal(400);
-	expect(err).not.to.be.null();
+	expect(res.status).to.equal(403);
 	done();
       });
 
