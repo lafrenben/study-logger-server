@@ -39,4 +39,5 @@ node_modules
 npm-debug.log
 
 # Specific for this project
-data
+data/*
+!data/.gitkeep
