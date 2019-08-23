@@ -23,7 +23,7 @@ function createLogRoute(options) {
   var logroute = express.Router();
 
   logroute.use( cors() );
-  logroute.use( bodyParser.json() );
+  logroute.use( bodyParser.json({limit: '50mb', extended: true}) );
 
   logroute.post('/log', function(req, res, next) {
     var user = req.query.user;
