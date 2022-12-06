@@ -9,9 +9,9 @@
   "author": "Ben Lafreniere",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.10.1",
+    "body-parser": "^1.20.1",
     "cors": "^2.5.2",
-    "express": "^4.10.6",
+    "express": "^4.18.2",
     "q": "^1.1.2",
     "sqlite3": "^4.0.8"
   },
@@ -19,6 +19,6 @@
     "chai": "^1.10.0",
     "mocha": "^2.1.0",
     "request": "^2.51.0",
-    "supertest": "^0.15.0"
+    "supertest": "^6.3.2"
   }
 }
