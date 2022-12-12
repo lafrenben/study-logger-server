@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "mocha": "^2.1.0",
+    "mocha": "^10.2.0",
     "request": "^2.51.0",
     "supertest": "^6.3.2"
   }
