@@ -22,7 +22,7 @@ describe('Server', function() {
       .send(events)
       .end(function(err, res) {
 	expect(res.status).to.equal(200);
-	expect(err).to.be.null();
+	expect(err).to.be.null;
 	expect(res.body.message).to.equal("Done!");
 	done();
       });
